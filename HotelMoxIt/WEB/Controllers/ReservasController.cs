@@ -15,11 +15,15 @@ namespace WEB.Controllers
     {
         private IReservaRepositorio _reservaRepositorio;
         private IHabitacionRepositorio _habitacionRepositorio;
+        private IUsuarioRepositorio _usuarioRepositorio;
 
-        public ReservasController(IReservaRepositorio reservaRepositorio, IHabitacionRepositorio habitacionRepositorio)
+        public ReservasController(IReservaRepositorio reservaRepositorio,
+                                  IHabitacionRepositorio habitacionRepositorio,
+                                  IUsuarioRepositorio usuarioRepositorio)
         {
             _reservaRepositorio = reservaRepositorio;
             _habitacionRepositorio = habitacionRepositorio;
+            _usuarioRepositorio = usuarioRepositorio;
         }
 
 
@@ -27,14 +31,14 @@ namespace WEB.Controllers
         {
 
             var habitacion = _habitacionRepositorio.GetById(id);
-            var idUsuario = HttpContext.Session.GetInt32("Id");
+            var usuario = _usuarioRepositorio.GetById(HttpContext.Session.GetInt32("Id"));
 
             if (habitacion == null)
             {
                 return RedirectToAction("Index", "Habitaciones");
             }
 
-            _reservaRepositorio.Reservar(idUsuario, habitacion);
+            _reservaRepositorio.Reservar(usuario, habitacion);
             ViewBag.Msg = "Se reservo correctamente";
             return RedirectToAction("Index", "Habitaciones");
 
@@ -45,9 +49,16 @@ namespace WEB.Controllers
         {
             var idUsuario = HttpContext.Session.GetInt32("Id");
 
-            IEnumerable<Reserva> reservas = _reservaRepositorio.ObtenerPorUsuario(idUsuario);
+            if (HttpContext.Session.GetInt32("TipoUsuario") == 1)
+            {
+                IEnumerable<Reserva> reservas = _reservaRepositorio.ObtenerPorUsuario(idUsuario);
 
-            return View(reservas);
+                return View(reservas);
+            }
+
+            IEnumerable<Reserva> reservasAdmin = _reservaRepositorio.ObtenerTodas();
+
+            return View("HistorialAdmin",reservasAdmin);
         }
     }
 }

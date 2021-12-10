@@ -9,7 +9,8 @@ namespace Repositorio
 {
     public interface IReservaRepositorio
     {
-        void Reservar(int? idUsuario, Habitacion habitacion);
+        void Reservar(Usuario usuario, Habitacion habitacion);
         IEnumerable<Reserva> ObtenerPorUsuario(int? idUsuario);
+        IEnumerable<Reserva> ObtenerTodas();
     }
 }

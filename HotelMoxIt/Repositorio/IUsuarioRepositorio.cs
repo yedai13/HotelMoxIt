@@ -12,5 +12,6 @@ namespace Repositorio
     {
         void Create(RegistroViewModel usuario);
         Usuario Login(LoginViewModel usuario);
+        Usuario GetById(int? idUsuario);
     }
 }

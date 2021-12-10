@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Repositorio.Models.Reserva>
+
+@{
+    ViewData["Title"] = "Historial reservas";
+}
+<partial name="_NavBarAdmin"/>
+
+
+<div>
+    <h4>Historial de Reservas</h4>
+    <hr />
+
+
+    <div>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nro Habitacion</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Fecha</th>
+
+
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var reserva in @Model)
+            {
+
+                <tr>
+                    <th>@reserva.Habitacion.NroHabitacion</th>
+                    <td>@reserva.Precio</td>
+                    <td>@reserva.FechaReserva.ToShortDateString()</td>
+
+                </tr>
+
+            }
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+</div>

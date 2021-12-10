@@ -22,15 +22,21 @@ namespace Repositorio
             return _ctx.Reserva.Include(r => r.Habitacion).Where(r => r.IdUsuario == idUsuario).ToList();
         }
 
-        public void Reservar(int? idUsuario, Habitacion habitacion)
+        public IEnumerable<Reserva> ObtenerTodas()
+        {
+            return _ctx.Reserva.Include(r => r.Habitacion).ToList();
+        }
+
+        public void Reservar(Usuario usuario, Habitacion habitacion)
         {
             Reserva nueva = new();
 
-            nueva.IdUsuario = (int)idUsuario;
+            nueva.IdUsuario = usuario.Id;
             nueva.IdHabitacion = habitacion.Id;
             nueva.Precio = habitacion.Precio;
             nueva.FechaReserva= DateTime.Now;
             nueva.Habitacion = habitacion;
+            nueva.Usuario = usuario; 
 
             habitacion.Estado = 2;
 

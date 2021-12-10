@@ -1,4 +1,5 @@
-﻿<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+﻿@using Microsoft.AspNetCore.Http
+<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
         <a class="navbar-brand" asp-area="" asp-controller="Habitaciones" asp-action="Index">Hotel Mox</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -10,13 +11,16 @@
                 <li class="nav-item">
                     <a class="nav-link text-dark" asp-area="" asp-controller="Habitaciones" asp-action="Create">Alta Habitacion</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Reservas" asp-action="Historial">Reservas</a>
+                </li>
             </ul>
 
 
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="nav-link d-flex"> Todavia NADA</a>
+                    <a class="nav-link d-flex"> @Context.Session.GetString("Nombre")</a>
                 </li>
                 <li>
                     <a class="nav-link d-flex" asp-area="" asp-controller="Usuario" asp-action="LogOut">Log Out</a>

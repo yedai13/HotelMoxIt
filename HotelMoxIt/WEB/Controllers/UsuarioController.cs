@@ -81,5 +81,19 @@ namespace WEB.Controllers
             return RedirectToAction("Create", "Habitaciones");
         }
 
+        public IActionResult Editar()
+        {
+            var idUsuario =HttpContext.Session.GetInt32("Id");
+            var usuario = _usuarioRepositorio.GetById(idUsuario);
+            return View(usuario);
+        }
+
+        [HttpPost]
+        public IActionResult Editar(Usuario usuario)
+        {
+            _usuarioRepositorio.Editar(usuario);
+            return RedirectToAction("Index", "Habitaciones");
+        }
+
     }
 }

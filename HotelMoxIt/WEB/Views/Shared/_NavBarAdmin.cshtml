@@ -20,7 +20,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="nav-link d-flex"> @Context.Session.GetString("Nombre")</a>
+                    <a class="nav-link d-flex" asp-controller="Usuario" asp-action="Editar"> @Context.Session.GetString("Nombre")</a>
                 </li>
                 <li>
                     <a class="nav-link d-flex" asp-area="" asp-controller="Usuario" asp-action="LogOut">Log Out</a>

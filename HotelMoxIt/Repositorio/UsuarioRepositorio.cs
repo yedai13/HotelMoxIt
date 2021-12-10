@@ -29,6 +29,12 @@ namespace Repositorio
             _ctx.SaveChanges();
         }
 
+        public void Editar(Usuario usuario)
+        {
+            _ctx.Usuario.Update(usuario);
+            _ctx.SaveChanges();
+        }
+
         public Usuario GetById(int? idUsuario)
         {
             return _ctx.Usuario.Where(u => u.Id == idUsuario).FirstOrDefault();

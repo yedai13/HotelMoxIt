@@ -19,7 +19,8 @@
                     <th scope="col">Capacidad</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Precio</th>
-                    <th scope="col">Reservar</th>
+                    <th scope="col">Editar</th>
+                    <th scope="col">Eliminar</th>
 
 
                 </tr>
@@ -33,7 +34,9 @@
                     <td>@habitacion.Capacidad</td>
                     <td>@(habitacion.Estado == 1 ? "Disponible" : "Reservado")</td>
                     <td>@habitacion.Precio $</td>
-                    <td>@Html.ActionLink("Editar", "Editar", "Habitaciones", new{@habitacion.Id})</td>
+                    <td>@Html.ActionLink("Editar", "Editar", "Habitaciones", new { @habitacion.Id })</td>
+                    <td>@Html.ActionLink("Eliminar", "Eliminar", "Habitaciones", new{@habitacion.Id})</td>
+
 
                 </tr>
 

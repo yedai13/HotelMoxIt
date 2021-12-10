@@ -5,13 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Repositorio.Models
+namespace Repositorio.ViewModel
 {
-    public class Usuario
+    public class RegistroViewModel
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [StringLength(255)]
         public string Nombre { get; set; }
@@ -25,21 +22,11 @@ namespace Repositorio.Models
         public string Dni { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
         [StringLength(255)]
         public string Contraseña { get; set; }
-
-
-        [Required]
-        public int TipoUsuario { get; set; }
-
-        public int IdHabitacion { get; set; }
-        public Habitacion Habitacion { get; set; }
-
-
-
     }
 }

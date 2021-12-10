@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Repositorio;
 
 namespace WEB
 {
@@ -26,6 +27,10 @@ namespace WEB
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<HotelDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("HotelDBContext")));
+
+
+            //Repositorios
+            services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
             services.AddControllersWithViews();
         }

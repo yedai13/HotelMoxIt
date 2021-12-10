@@ -18,8 +18,8 @@ namespace WEB.Controllers
         private IUsuarioRepositorio _usuarioRepositorio;
 
         public ReservasController(IReservaRepositorio reservaRepositorio,
-                                  IHabitacionRepositorio habitacionRepositorio,
-                                  IUsuarioRepositorio usuarioRepositorio)
+            IHabitacionRepositorio habitacionRepositorio,
+            IUsuarioRepositorio usuarioRepositorio)
         {
             _reservaRepositorio = reservaRepositorio;
             _habitacionRepositorio = habitacionRepositorio;
@@ -44,7 +44,7 @@ namespace WEB.Controllers
 
         }
 
-        
+
         public IActionResult Historial()
         {
             var idUsuario = HttpContext.Session.GetInt32("Id");
@@ -58,7 +58,8 @@ namespace WEB.Controllers
 
             IEnumerable<Reserva> reservasAdmin = _reservaRepositorio.ObtenerTodas();
 
-            return View("HistorialAdmin",reservasAdmin);
+            return View("HistorialAdmin", reservasAdmin);
         }
     }
+
 }

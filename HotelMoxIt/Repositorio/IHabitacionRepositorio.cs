@@ -14,5 +14,6 @@ namespace Repositorio
         IEnumerable<Habitacion> ObtenerHabitacionesDisponibles();
         Habitacion GetById(int id);
         IEnumerable<Habitacion> ObtenerTodas();
+        void Editar(Habitacion habitacion);
     }
 }

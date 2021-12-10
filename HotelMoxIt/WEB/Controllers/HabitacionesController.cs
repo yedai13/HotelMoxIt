@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Repositorio;
+using Repositorio.Models;
 using Repositorio.ViewModel;
 using WEB.Filters;
 
@@ -55,6 +56,21 @@ namespace WEB.Controllers
             var habitacionesAdmin = _habitacionRepositorio.ObtenerTodas();
             return View("IndexAdmin", habitacionesAdmin);
         }
-       
+
+        public IActionResult Editar(int id)
+        {
+            var habitacion = _habitacionRepositorio.GetById(id);
+            return View(habitacion);
+        }
+
+        [HttpPost]
+        public IActionResult Editar(Habitacion  habitacion)
+        {
+            _habitacionRepositorio.Editar(habitacion);
+
+            return RedirectToAction("Index", "Habitaciones");
+        }
     }
+
 }
+

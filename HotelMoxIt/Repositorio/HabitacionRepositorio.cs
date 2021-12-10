@@ -29,6 +29,13 @@ namespace Repositorio
             _ctx.SaveChanges();
         }
 
+        public void Editar(Habitacion habitacion)
+        {
+            _ctx.Habitacion.Update(habitacion);
+            _ctx.SaveChanges();
+
+        }
+
         public Habitacion GetById(int id)
         {
             return _ctx.Habitacion.Where(h => h.Id == id).FirstOrDefault();

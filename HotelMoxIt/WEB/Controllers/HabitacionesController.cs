@@ -6,9 +6,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Repositorio;
 using Repositorio.ViewModel;
+using WEB.Filters;
 
 namespace WEB.Controllers
 {
+    [Logeado]
     public class HabitacionesController : Controller
     {
         private IHabitacionRepositorio _habitacionRepositorio;
@@ -18,6 +20,7 @@ namespace WEB.Controllers
             _habitacionRepositorio = habitacionRepositorio;
         }
        
+        [EsAdmin]
         public ActionResult Create()
         {
             return View();
@@ -25,6 +28,7 @@ namespace WEB.Controllers
 
         
         [HttpPost]
+        [EsAdmin]
         // [ValidateAntiForgeryToken]
         public ActionResult Create(CreateHabitacionViewModel viewModel)
         {

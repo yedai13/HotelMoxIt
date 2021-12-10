@@ -19,6 +19,8 @@
                     <th scope="col">Capacidad</th>
                     <th scope="col">Estado</th>
                     <th scope="col">Precio</th>
+                    <th scope="col">Reservar</th>
+
 
                 </tr>
             </thead>
@@ -31,6 +33,7 @@
                     <td>@habitacion.Capacidad</td>
                     <td>@(habitacion.Estado == 1 ? "Disponible" : "Reservado")</td>
                     <td>@habitacion.Precio $</td>
+                    <td>@Html.ActionLink("Editar", "Reservar", "Reservas", new{@habitacion.Id})</td>
 
                 </tr>
 

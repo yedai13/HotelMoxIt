@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Repositorio;
 using Repositorio.Models;
 using Repositorio.ViewModel;
+using WEB.Filters;
 
 namespace WEB.Controllers
 {
@@ -19,6 +20,8 @@ namespace WEB.Controllers
             _usuarioRepositorio = usuarioRepositorio;
         }
         
+
+        [NoLogeado]
         public ActionResult Create()
         {
             return View();
@@ -26,6 +29,7 @@ namespace WEB.Controllers
 
       
         [HttpPost]
+        [NoLogeado]
         // [ValidateAntiForgeryToken]
         public ActionResult Create(RegistroViewModel viewModel)
         {
@@ -38,6 +42,8 @@ namespace WEB.Controllers
             return View();
         }
 
+
+        [NoLogeado]
         public IActionResult Login()
         {
             return View();
@@ -45,6 +51,7 @@ namespace WEB.Controllers
 
 
         [HttpPost]
+        [NoLogeado]
         public IActionResult Login(LoginViewModel viewmodel)
         {
             if (!ModelState.IsValid) return View(viewmodel);
@@ -57,13 +64,21 @@ namespace WEB.Controllers
                 return View(viewmodel);
             }
 
+            HttpContext.Session.SetInt32("Id", usuario.Id);
             HttpContext.Session.SetInt32("ExisteUsuario", 1);
-            HttpContext.Session.SetInt32("TipoUsuario", 1);
+            HttpContext.Session.SetInt32("TipoUsuario", usuario.TipoUsuario);
             HttpContext.Session.SetString("Nombre", usuario.Nombre + " " + usuario.Apellido);
 
 
 
             return RedirectToAction("Index", "Habitaciones");
+        }
+
+        [Logeado]
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Create", "Habitaciones");
         }
 
     }

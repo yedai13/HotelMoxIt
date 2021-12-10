@@ -18,11 +18,6 @@ namespace WEB.Filters
                 return;
             }
 
-            if (context.HttpContext.Session.GetInt32("TipoUsuario") == 1)
-            {
-                context.Result = new RedirectResult("/Habitaciones");
-                return;
-            }
 
             base.OnActionExecuting(context);
         }

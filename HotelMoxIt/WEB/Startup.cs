@@ -33,6 +33,8 @@ namespace WEB
             //Repositorios
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<IHabitacionRepositorio, HabitacionRepositorio>();
+            services.AddScoped<IReservaRepositorio, ReservaRepositorio>();
+
 
             //Sesion
 

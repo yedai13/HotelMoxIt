@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<Repositorio.Models.Habitacion>
 
 @{
-    ViewData["Title"] = "Inxdex";
+    ViewData["Title"] = "Index";
 }
-<partial name="_NavBarUsuario"/>
+<partial name="_NavBarAdmin"/>
 
 
 <div>
@@ -33,7 +33,7 @@
                     <td>@habitacion.Capacidad</td>
                     <td>@(habitacion.Estado == 1 ? "Disponible" : "Reservado")</td>
                     <td>@habitacion.Precio $</td>
-                    <td>@Html.ActionLink("Reservar", "Reservar", "Reservas", new{@habitacion.Id})</td>
+                    <td>@Html.ActionLink("Editar", "Editar", "Habitaciones", new{@habitacion.Id})</td>
 
                 </tr>
 

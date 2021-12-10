@@ -29,9 +29,19 @@ namespace Repositorio
             _ctx.SaveChanges();
         }
 
+        public Habitacion GetById(int id)
+        {
+            return _ctx.Habitacion.Where(h => h.Id == id).FirstOrDefault();
+        }
+
         public IEnumerable<Habitacion> ObtenerHabitacionesDisponibles()
         {
             return _ctx.Habitacion.Where(h=> h.Estado == 1).ToList();
+        }
+
+        public IEnumerable<Habitacion> ObtenerTodas()
+        {
+            return _ctx.Habitacion.ToList();
         }
     }
 }

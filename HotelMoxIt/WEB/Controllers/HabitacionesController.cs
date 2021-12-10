@@ -20,7 +20,7 @@ namespace WEB.Controllers
             _habitacionRepositorio = habitacionRepositorio;
         }
        
-        [EsAdmin]
+        
         public ActionResult Create()
         {
             return View();
@@ -28,7 +28,6 @@ namespace WEB.Controllers
 
         
         [HttpPost]
-        [EsAdmin]
         // [ValidateAntiForgeryToken]
         public ActionResult Create(CreateHabitacionViewModel viewModel)
         {
@@ -39,14 +38,22 @@ namespace WEB.Controllers
 
             _habitacionRepositorio.Create(viewModel);
          
-                return View();
+                return RedirectToAction("Index", "Habitaciones");
             
         }
 
         public IActionResult Index()
         {
-            var habitaciones = _habitacionRepositorio.ObtenerHabitacionesDisponibles();
-            return View(habitaciones);
+
+            if (HttpContext.Session.GetInt32("TipoUsuario") == 1)
+            {
+                var habitaciones = _habitacionRepositorio.ObtenerHabitacionesDisponibles();
+                return View("Index",habitaciones);
+            }
+
+
+            var habitacionesAdmin = _habitacionRepositorio.ObtenerTodas();
+            return View("IndexAdmin", habitacionesAdmin);
         }
        
     }

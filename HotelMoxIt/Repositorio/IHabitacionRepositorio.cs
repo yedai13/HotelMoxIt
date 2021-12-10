@@ -12,5 +12,7 @@ namespace Repositorio
     {
         void Create(CreateHabitacionViewModel habitacion);
         IEnumerable<Habitacion> ObtenerHabitacionesDisponibles();
+        Habitacion GetById(int id);
+        IEnumerable<Habitacion> ObtenerTodas();
     }
 }

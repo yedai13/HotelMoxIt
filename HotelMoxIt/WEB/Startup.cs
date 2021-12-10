@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Repositorio;
+using WEB.Filters;
 
 namespace WEB
 {
@@ -32,6 +33,21 @@ namespace WEB
             //Repositorios
             services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddScoped<IHabitacionRepositorio, HabitacionRepositorio>();
+
+            //Sesion
+
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = "HotelMox";
+                options.IdleTimeout = TimeSpan.FromSeconds(1200);
+            });
+
+            //filter
+            services.AddScoped<Logeado>();
+            services.AddScoped<NoLogeado>();
+            services.AddScoped<EsAdmin>();
+            services.AddScoped<EsUsuario>();
+
 
 
             services.AddControllersWithViews();

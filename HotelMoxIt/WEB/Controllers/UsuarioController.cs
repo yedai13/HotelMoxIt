@@ -57,6 +57,12 @@ namespace WEB.Controllers
                 return View(viewmodel);
             }
 
+            HttpContext.Session.SetInt32("ExisteUsuario", 1);
+            HttpContext.Session.SetInt32("TipoUsuario", 1);
+            HttpContext.Session.SetString("Nombre", usuario.Nombre + " " + usuario.Apellido);
+
+
+
             return RedirectToAction("Index", "Habitaciones");
         }
 

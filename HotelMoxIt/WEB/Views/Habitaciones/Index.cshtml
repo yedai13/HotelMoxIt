@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Repositorio.Models.Habitacion>
+
+@{
+    ViewData["Title"] = "Inxdex";
+}
+
+
+
+<div>
+    <h4>Habitaciones Disponibles</h4>
+    <hr />
+
+
+    <div>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nro Habitacion</th>
+                    <th scope="col">Capacidad</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Precio</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var habitacion in @Model)
+                {
+
+                <tr>
+                    <th>@habitacion.NroHabitacion</th>
+                    <td>@habitacion.Capacidad</td>
+                    <td>@(habitacion.Estado == 1 ? "Disponible" : "Reservado")</td>
+                    <td>@habitacion.Precio $</td>
+
+                </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+</div>

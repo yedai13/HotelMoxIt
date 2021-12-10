@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Repositorio.Models;
 using Repositorio.ViewModel;
 
 namespace Repositorio
@@ -10,5 +11,6 @@ namespace Repositorio
     public interface IUsuarioRepositorio
     {
         void Create(RegistroViewModel usuario);
+        Usuario Login(LoginViewModel usuario);
     }
 }

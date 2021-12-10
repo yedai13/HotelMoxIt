@@ -38,7 +38,27 @@ namespace WEB.Controllers
             return View();
         }
 
-        
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public IActionResult Login(LoginViewModel viewmodel)
+        {
+            if (!ModelState.IsValid) return View(viewmodel);
+
+            var usuario = _usuarioRepositorio.Login(viewmodel);
+
+            if (usuario == null)
+            {
+                ModelState.AddModelError(string.Empty, "Credenciales incorrectas");
+                return View(viewmodel);
+            }
+
+            return RedirectToAction("Index", "Habitaciones");
+        }
 
     }
 }

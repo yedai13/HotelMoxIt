@@ -28,5 +28,10 @@ namespace Repositorio
             _ctx.Usuario.Add(nuevo);
             _ctx.SaveChanges();
         }
+
+        public Usuario Login(LoginViewModel usuario)
+        {
+            return _ctx.Usuario.Where(u => u.Email == usuario.Email && u.Contraseña == usuario.Contraseña).FirstOrDefault();
+        }
     }
 }

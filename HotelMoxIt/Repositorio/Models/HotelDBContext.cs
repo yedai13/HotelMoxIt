@@ -15,8 +15,7 @@ namespace Repositorio.Models
         }
 
         public DbSet<Usuario> Usuario { get; set; }
-        public DbSet<Habitacion> Habitacion { get; set; }
-        public DbSet<Reserva> Reserva { get; set; }
+     
 
     }
 }
